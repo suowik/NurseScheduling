@@ -16,7 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
-        //generowac 1500 schedule
         for(int i  = 0; i < POPULATION_SIZE; i++){
             initialPopulation.add(new Schedule(16,12,3,1));
         }
