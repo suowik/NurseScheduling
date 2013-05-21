@@ -13,6 +13,7 @@ public class Main {
     private static final int POPULATION_SIZE = 1500;
     private static final Crossover crossover = new Crossover();
     private static final Mutate mutate = new Mutate();
+    private static final int OPTIMAL_SOLUTION = 666;
 
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
@@ -34,7 +35,7 @@ public class Main {
             schedule.fitness();
         }
         Collections.sort(population);
-        if(Collections.max(population).fitness().getValue() > 666){
+        if(Collections.max(population).fitness().getValue() > OPTIMAL_SOLUTION){
             return Collections.max(population);
         }
         List<Schedule> newPopulation = population.subList(0,population.size()/4);
