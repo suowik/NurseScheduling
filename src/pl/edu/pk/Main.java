@@ -13,8 +13,7 @@ public class Main {
     private static final int POPULATION_SIZE = 1500;
     private static final Crossover crossover = new Crossover();
     private static final Mutate mutate = new Mutate();
-    private static final int OPTIMAL_SOLUTION = 666;
-
+    private static final int OPTIMAL_SOLUTION = 6;
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
         for(int i  = 0; i < POPULATION_SIZE; i++){
@@ -25,12 +24,6 @@ public class Main {
     }
 
     private static Schedule execute(List<Schedule> population) {
-        //1. sprawdzic dopasowanie
-        //2. posortowac po dopasowaniu
-        //3. przyjac 25% najlepszych
-        //4. krzyzowanie
-        //5. mutowanie
-        //6. powrot do 1 jesli niezadowalajace
         for (Schedule schedule : population) {
             schedule.fitness();
         }
@@ -38,14 +31,15 @@ public class Main {
         if(Collections.max(population).fitness().getValue() > OPTIMAL_SOLUTION){
             return Collections.max(population);
         }
-        List<Schedule> newPopulation = population.subList(0,population.size()/4);
+        population = population.subList(0,population.size()/4);
         List<Schedule> result = new ArrayList<Schedule>();
-        for(int i = 0; i < newPopulation.size()-1;i++){
-            Schedule offspring = crossover.apply(newPopulation.get(i), newPopulation.get(i + 1));
+        for(int i = 0; i < population.size()-1;i++){
+            Schedule offspring = crossover.apply(population.get(i), population.get(i + 1));
             offspring = mutate.apply(offspring);
             result.add(offspring);
-            result.addAll(newPopulation);
+            result.addAll(population);
         }
+        result = result.subList(0,POPULATION_SIZE);
         return execute(result);
     }
 }
