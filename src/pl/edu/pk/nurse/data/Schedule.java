@@ -16,9 +16,12 @@ public class Schedule {
     private int MONTH_LENGTH = 40;
     private List<Nurse> nurses;
     public Schedule(int nursesCount, int fullPart, int part32, int part20){
+        generateChromosome(nursesCount, fullPart, part32, part20);
+        convertToEntity();
+    }
 
-        this.nurses = new ArrayList<Nurse>();
-        convert();
+    private void generateChromosome(int nursesCount, int fullPart, int part32, int part20) {
+        chromosome = new int[nursesCount * MONTH_LENGTH];
     }
 
     public Week getWeekForNurse(int nurseIndex, int week){
@@ -26,13 +29,14 @@ public class Schedule {
     }
 
     public Nurse getNurse(int index){
-        throw new UnsupportedOperationException();
+        return nurses.get(index);
     }
 
-    private void convert(){
+    private void convertToEntity(){
         if(chromosome.length % 8 != 0){
             throw new IllegalStateException("wrong length of chromosome");
         }
+        this.nurses = new ArrayList<Nurse>();
         for(int start = 0; start < chromosome.length; start+= MONTH_LENGTH) {
             final int to = start + MONTH_LENGTH - 1;
             nurses.add(new Nurse(Arrays.copyOfRange(chromosome,start, to)));
