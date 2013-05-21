@@ -11,6 +11,8 @@ import java.util.List;
 public class Main {
 
     private static final int POPULATION_SIZE = 1500;
+    private static final Crossover crossover = new Crossover();
+    private static final Mutate mutate = new Mutate();
 
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
@@ -38,8 +40,6 @@ public class Main {
         }
         List<Schedule> newPopulation = population.subList(0,population.size()/4);
         List<Schedule> result = new ArrayList<Schedule>();
-        Crossover crossover = new Crossover();
-        Mutate mutate = new Mutate();
         for(int i = 0; i < newPopulation.size()-1;i++){
             Schedule offspring = crossover.apply(newPopulation.get(i), newPopulation.get(i + 1));
             offspring = mutate.apply(offspring);
