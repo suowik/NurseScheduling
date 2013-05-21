@@ -44,6 +44,7 @@ public class Schedule {
     }
 
     public List<Nurse> toEntity() {
+        convertToEntity();
         return nurses;
     }
 }
