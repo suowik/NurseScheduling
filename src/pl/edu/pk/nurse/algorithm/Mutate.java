@@ -16,7 +16,7 @@ public class Mutate implements Operation {
 
     public Schedule apply(Schedule schedule) {
         int[] chromosome = schedule.getChromosome();
-        double probability = 10.0/chromosome.length;
+        double probability = 0.02;
         int[] result = Arrays.copyOf(chromosome,chromosome.length);
         for(int i = 0; i < chromosome.length; i++){
             if(i % 8 == 0 && RANDOM.nextDouble() < probability){
