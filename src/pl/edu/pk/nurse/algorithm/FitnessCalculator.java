@@ -1,5 +1,7 @@
 package pl.edu.pk.nurse.algorithm;
 
+import pl.edu.pk.nurse.constraints.Constraint;
+import pl.edu.pk.nurse.constraints.hard.ExampleConstraint;
 import pl.edu.pk.nurse.data.Schedule;
 import pl.edu.pk.nurse.data.util.Fitness;
 
@@ -10,6 +12,8 @@ import pl.edu.pk.nurse.data.util.Fitness;
  */
 public class FitnessCalculator {
     public static Fitness measure(Schedule schedule){
-        return new Fitness(10);
+        Constraint constraint = new ExampleConstraint();
+        Fitness partialFitness = constraint.measure(schedule);
+        return partialFitness;
     }
 }
