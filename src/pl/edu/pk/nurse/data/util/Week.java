@@ -6,9 +6,12 @@ package pl.edu.pk.nurse.data.util;
  * Time: 11:53
  */
 public class Week {
+    private final int CHROMOSOME_LENGTH;
     private int[] chromosome;
+
     public Week(int[] chromosome){
-        if(chromosome.length != 8){
+        CHROMOSOME_LENGTH = 8;
+        if(chromosome.length != CHROMOSOME_LENGTH){
             throw new IllegalArgumentException();
         }
         this.chromosome = chromosome;

@@ -11,10 +11,11 @@ import java.util.Arrays;
  * Time: 11:27
  */
 public class Nurse {
+    private final static int CHROMOSOME_LENGTH = 40;
     private int[] chromosome;
-
     public Nurse(int[] chromosome) {
-        if(chromosome.length != 8*5){
+
+        if(chromosome.length != CHROMOSOME_LENGTH){
             throw new IllegalArgumentException();
         }
         this.chromosome = chromosome;
