@@ -62,9 +62,8 @@ public class Nurse {
 
         Nurse nurse = (Nurse) o;
 
-        if (!Arrays.equals(chromosome, nurse.chromosome)) return false;
+        return Arrays.equals(chromosome, nurse.chromosome);
 
-        return true;
     }
 
     @Override

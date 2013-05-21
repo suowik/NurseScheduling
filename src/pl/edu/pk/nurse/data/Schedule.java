@@ -97,9 +97,8 @@ public class Schedule implements Comparable<Schedule>{
 
         Schedule schedule = (Schedule) o;
 
-        if (!Arrays.equals(chromosome, schedule.chromosome)) return false;
+        return Arrays.equals(chromosome, schedule.chromosome);
 
-        return true;
     }
 
     @Override
