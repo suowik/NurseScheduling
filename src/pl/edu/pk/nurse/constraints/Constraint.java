@@ -1,4 +1,4 @@
-package pl.edu.pk.nurse.algorithm.constraints;
+package pl.edu.pk.nurse.constraints;
 
 import pl.edu.pk.nurse.data.Schedule;
 import pl.edu.pk.nurse.data.util.Weight;

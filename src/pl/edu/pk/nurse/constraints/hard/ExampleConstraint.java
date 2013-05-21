@@ -1,6 +1,6 @@
-package pl.edu.pk.nurse.algorithm.constraints.hard;
+package pl.edu.pk.nurse.constraints.hard;
 
-import pl.edu.pk.nurse.algorithm.constraints.Constraint;
+import pl.edu.pk.nurse.constraints.Constraint;
 import pl.edu.pk.nurse.data.Schedule;
 import pl.edu.pk.nurse.data.util.Shift;
 import pl.edu.pk.nurse.data.util.Vacancy;
