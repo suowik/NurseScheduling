@@ -15,13 +15,20 @@ public class Schedule {
     private int[] chromosome;
     private int MONTH_LENGTH = 40;
     private List<Nurse> nurses;
+
+    public Schedule(int[] chromosome){
+        this.chromosome = chromosome;
+        convertToEntity();
+    }
+
     public Schedule(int nursesCount, int fullPart, int part32, int part20){
+        chromosome = new int[nursesCount * MONTH_LENGTH];
         generateChromosome(nursesCount, fullPart, part32, part20);
         convertToEntity();
     }
 
     private void generateChromosome(int nursesCount, int fullPart, int part32, int part20) {
-        chromosome = new int[nursesCount * MONTH_LENGTH];
+
     }
 
     public Week getWeekForNurse(int nurseIndex, int week){
@@ -46,5 +53,9 @@ public class Schedule {
     public List<Nurse> toEntity() {
         convertToEntity();
         return nurses;
+    }
+
+    public int[] getChromosome() {
+        return chromosome;
     }
 }
