@@ -1,5 +1,7 @@
 package pl.edu.pk.nurse.data;
 
+import pl.edu.pk.nurse.algorithm.FitnessCalculator;
+import pl.edu.pk.nurse.data.util.Fitness;
 import pl.edu.pk.nurse.data.util.Vacancy;
 import pl.edu.pk.nurse.data.util.Week;
 
@@ -12,11 +14,12 @@ import java.util.List;
  * Date: 21.05.13
  * Time: 11:32
  */
-public class Schedule {
+public class Schedule implements Comparable<Schedule>{
     private static final int VACANCY = 8;
     private int[] chromosome;
     private int MONTH_LENGTH = 40;
     private List<Nurse> nurses;
+    private Fitness fitness;
 
     public Schedule(int[] chromosome) {
         this.chromosome = chromosome;
@@ -58,6 +61,10 @@ public class Schedule {
             throw new IllegalStateException("wrong length of chromosome");
         }
         this.nurses = new ArrayList<Nurse>();
+        convertChromosomeToNurses();
+    }
+
+    private void convertChromosomeToNurses() {
         for (int start = 0; start < chromosome.length; start += MONTH_LENGTH) {
             final int to = start + MONTH_LENGTH;
             nurses.add(new Nurse(Arrays.copyOfRange(chromosome, start, to)));
@@ -65,8 +72,18 @@ public class Schedule {
     }
 
     public List<Nurse> toEntity() {
-        convertToEntity();
         return nurses;
+    }
+
+    public Fitness fitness(){
+        if (fitness == null){
+            fitness = measureFitness();
+        }
+        return fitness;
+    }
+
+    private Fitness measureFitness() {
+        return FitnessCalculator.measure(this);
     }
 
     public int[] getChromosome() {
@@ -95,5 +112,10 @@ public class Schedule {
         return "Schedule{" +
                 "chromosome=" + Arrays.toString(chromosome) +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Schedule o) {
+        return this.fitness().getValue() - o.fitness().getValue();
     }
 }

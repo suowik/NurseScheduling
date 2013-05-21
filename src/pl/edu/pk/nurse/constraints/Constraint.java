@@ -1,7 +1,7 @@
 package pl.edu.pk.nurse.constraints;
 
 import pl.edu.pk.nurse.data.Schedule;
-import pl.edu.pk.nurse.data.util.Weight;
+import pl.edu.pk.nurse.data.util.Fitness;
 
 /**
  * User: suowik
@@ -9,5 +9,5 @@ import pl.edu.pk.nurse.data.util.Weight;
  * Time: 11:28
  */
 public interface Constraint {
-    Weight measure(Schedule schedule);
+    Fitness measure(Schedule schedule);
 }

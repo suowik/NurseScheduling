@@ -5,10 +5,10 @@ package pl.edu.pk.nurse.data.util;
  * Date: 21.05.13
  * Time: 11:31
  */
-public class Weight {
+public class Fitness {
     private int value;
 
-    public Weight(int value) {
+    public Fitness(int value) {
         this.value = value;
     }
 
@@ -25,7 +25,7 @@ public class Weight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Weight weight = (Weight) o;
+        Fitness weight = (Fitness) o;
 
         if (value != weight.value) return false;
 
@@ -39,7 +39,7 @@ public class Weight {
 
     @Override
     public String toString() {
-        return "Weight{" +
+        return "Fitness{" +
                 "value=" + value +
                 '}';
     }
