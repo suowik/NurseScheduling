@@ -1,5 +1,7 @@
 package pl.edu.pk;
 
+import pl.edu.pk.nurse.algorithm.Crossover;
+import pl.edu.pk.nurse.algorithm.Mutate;
 import pl.edu.pk.nurse.data.Schedule;
 
 import java.util.ArrayList;
@@ -14,9 +16,10 @@ public class Main {
         for(int i  = 0; i < POPULATION_SIZE; i++){
             initialPopulation.add(new Schedule(16,12,3,1));
         }
-        for (Schedule schedule : initialPopulation) {
-            System.out.println(schedule.getNurse(15).getWeek(1));
-        }
+        Schedule schedule1 = initialPopulation.get(0);
+        Schedule schedule2 = initialPopulation.get(1);
+        Schedule crossedOver = new Crossover().apply(schedule1,schedule2);
+        Schedule mutated = new Mutate().apply(crossedOver);
         //generowac 1500 schedule
         //1. sprawdzic dopasowanie
         //2. posortowac po dopasowaniu
