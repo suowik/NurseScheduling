@@ -37,15 +37,15 @@ public class Nurse {
     public Week getWeek(int value){
         switch (value){
             case 1:
-                return convert(chromosome,0,7);
+                return convert(chromosome,0,8);
             case 2:
-                return convert(chromosome,8,15);
+                return convert(chromosome,9,16);
             case 3:
-                return convert(chromosome,16,23);
+                return convert(chromosome,17,24);
             case 4:
-                return convert(chromosome,24,31);
+                return convert(chromosome,25,32);
             case 5:
-                return convert(chromosome,32,39);
+                return convert(chromosome,33,40);
             default:
                 throw new IllegalArgumentException();
         }

@@ -13,6 +13,7 @@ import java.util.List;
  * Time: 11:32
  */
 public class Schedule {
+    private static final int VACANCY = 8;
     private int[] chromosome;
     private int MONTH_LENGTH = 40;
     private List<Nurse> nurses;
@@ -36,7 +37,7 @@ public class Schedule {
 
     private void generate(int start, int end, Vacancy vacancy) {
         for (int i = start; i < end; i++) {
-            if (i % 8 == 0) {
+            if (i % VACANCY == 0) {
                 chromosome[i] = vacancy.getValue();
             } else {
                 chromosome[i] = (int) (Math.random() * 5);
@@ -53,7 +54,7 @@ public class Schedule {
     }
 
     private void convertToEntity() {
-        if (chromosome.length % 8 != 0) {
+        if (chromosome.length % VACANCY != 0) {
             throw new IllegalStateException("wrong length of chromosome");
         }
         this.nurses = new ArrayList<Nurse>();

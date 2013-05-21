@@ -2,11 +2,21 @@ package pl.edu.pk;
 
 import pl.edu.pk.nurse.data.Schedule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
+    private static final int POPULATION_SIZE = 1000;
+
     public static void main(String[] args) {
-        Schedule schedule = new Schedule(16,12,3,1);
-        System.out.println(schedule);
+        List<Schedule> initialPopulation = new ArrayList<Schedule>();
+        for(int i  = 0; i < POPULATION_SIZE; i++){
+            initialPopulation.add(new Schedule(16,12,3,1));
+        }
+        for (Schedule schedule : initialPopulation) {
+            System.out.println(schedule.getNurse(15).getWeek(1));
+        }
         //generowac 1500 schedule
         //1. sprawdzic dopasowanie
         //2. posortowac po dopasowaniu
