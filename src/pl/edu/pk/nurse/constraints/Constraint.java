@@ -10,4 +10,6 @@ import pl.edu.pk.nurse.data.util.Fitness;
  */
 public interface Constraint {
     Fitness measure(Schedule schedule);
+
+    ConstraintType getType();
 }
