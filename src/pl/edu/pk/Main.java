@@ -13,7 +13,8 @@ public class Main {
     private static final int POPULATION_SIZE = 1500;
     private static final Crossover crossover = new Crossover();
     private static final Mutate mutate = new Mutate();
-    private static final int OPTIMAL_SOLUTION = 6;
+    private static final int OPTIMAL_SOLUTION = 699;
+
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
         for(int i  = 0; i < POPULATION_SIZE; i++){
@@ -24,14 +25,10 @@ public class Main {
     }
 
     private static Schedule execute(List<Schedule> population) {
-        for (Schedule schedule : population) {
-            schedule.fitness();
-        }
-        Collections.sort(population);
-        if(Collections.max(population).fitness().getValue() > OPTIMAL_SOLUTION){
+        calculateFitnessAndSort(population);
+        if(isSatisfying(population)){
             return Collections.max(population);
         }
-        population = population.subList(0,population.size()/4);
         List<Schedule> result = new ArrayList<Schedule>();
         for(int i = 0; i < population.size()-1;i++){
             Schedule offspring = crossover.apply(population.get(i), population.get(i + 1));
@@ -41,5 +38,16 @@ public class Main {
         }
         result = result.subList(0,POPULATION_SIZE);
         return execute(result);
+    }
+
+    private static boolean isSatisfying(List<Schedule> population) {
+        return Collections.max(population).fitness().getValue() > OPTIMAL_SOLUTION;
+    }
+
+    private static void calculateFitnessAndSort(List<Schedule> population) {
+        for (Schedule schedule : population) {
+            schedule.fitness();
+        }
+        Collections.sort(population);
     }
 }
