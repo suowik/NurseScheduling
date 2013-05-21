@@ -25,4 +25,8 @@ public enum  Vacancy {
                 throw new IllegalStateException();
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }

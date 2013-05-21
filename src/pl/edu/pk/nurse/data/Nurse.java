@@ -16,7 +16,7 @@ public class Nurse {
     public Nurse(int[] chromosome) {
 
         if(chromosome.length != CHROMOSOME_LENGTH){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.valueOf(chromosome.length));
         }
         this.chromosome = chromosome;
     }
@@ -55,5 +55,20 @@ public class Nurse {
         return new Week(Arrays.copyOfRange(chromosome, start, end));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Nurse nurse = (Nurse) o;
+
+        if (!Arrays.equals(chromosome, nurse.chromosome)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return chromosome != null ? Arrays.hashCode(chromosome) : 0;
+    }
 }
