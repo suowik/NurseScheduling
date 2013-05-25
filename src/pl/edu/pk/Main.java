@@ -13,7 +13,7 @@ public class Main {
     private static final int POPULATION_SIZE = 1500;
     private static final Crossover crossover = new Crossover();
     private static final Mutate mutate = new Mutate();
-    private static final int OPTIMAL_SOLUTION = 699;
+    private static final int OPTIMAL_SOLUTION = 5000;
 
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
@@ -41,7 +41,9 @@ public class Main {
     }
 
     private static boolean isSatisfying(List<Schedule> population) {
-        return Collections.max(population).fitness().getValue() > OPTIMAL_SOLUTION;
+        int best = Collections.min(population).fitness().getValue();
+        System.out.println("Current best result value: "+ best);
+        return best > OPTIMAL_SOLUTION;
     }
 
     private static void calculateFitnessAndSort(List<Schedule> population) {

@@ -76,9 +76,7 @@ public class Schedule implements Comparable<Schedule>{
     }
 
     public Fitness fitness(){
-        if (fitness == null){
-            fitness = measureFitness();
-        }
+        fitness = measureFitness();
         return fitness;
     }
 
@@ -109,7 +107,7 @@ public class Schedule implements Comparable<Schedule>{
     @Override
     public String toString() {
         return "Schedule{" +
-                "chromosome=" + Arrays.toString(chromosome) +
+                "fitness=" + fitness +
                 '}';
     }
 

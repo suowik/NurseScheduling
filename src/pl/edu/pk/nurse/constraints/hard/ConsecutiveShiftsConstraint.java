@@ -26,7 +26,7 @@ public class ConsecutiveShiftsConstraint extends HardConstraint {
         int violated = 0;
         for (Nurse nurse : schedule.toEntity()) {
             int consecutiveShifts = 0;
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 Week week = nurse.getWeek(i);
                 for (Weekday weekday : Weekday.values()) {
                     if (week.getShiftForDay(weekday) == Shift.NO_SHIFT) {

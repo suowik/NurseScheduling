@@ -19,7 +19,7 @@ public class Mutate implements Operation {
         double probability = 0.02;
         int[] result = Arrays.copyOf(chromosome,chromosome.length);
         for(int i = 0; i < chromosome.length; i++){
-            if(i % 8 == 0 && RANDOM.nextDouble() < probability){
+            if(i % 8 != 0 && RANDOM.nextDouble() < probability){
                 result[i] = (int) (Math.random()*5);
             }
         }

@@ -41,7 +41,7 @@ public class Nurse {
 
     public List<Shift> getAllShifts() {
         List<Shift> shifts = new ArrayList<Shift>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             for (Weekday weekday : Weekday.values()) {
                 shifts.add(getWeek(i).getShiftForDay(weekday));
             }
@@ -51,16 +51,16 @@ public class Nurse {
 
     public Week getWeek(int value) {
         switch (value) {
-            case 1:
+            case 0:
                 return convert(chromosome, 0, 8);
+            case 1:
+                return convert(chromosome, 8, 16);
             case 2:
-                return convert(chromosome, 9, 16);
+                return convert(chromosome, 16, 24);
             case 3:
-                return convert(chromosome, 17, 24);
+                return convert(chromosome, 24, 32);
             case 4:
-                return convert(chromosome, 25, 32);
-            case 5:
-                return convert(chromosome, 33, 40);
+                return convert(chromosome, 32, 40);
             default:
                 throw new IllegalArgumentException();
         }
