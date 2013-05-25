@@ -1,9 +1,13 @@
 package pl.edu.pk.nurse.data;
 
+import pl.edu.pk.nurse.data.util.Shift;
 import pl.edu.pk.nurse.data.util.Vacancy;
 import pl.edu.pk.nurse.data.util.Week;
+import pl.edu.pk.nurse.data.util.Weekday;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * User: suowik
@@ -13,16 +17,17 @@ import java.util.Arrays;
 public class Nurse {
     private final static int CHROMOSOME_LENGTH = 40;
     private int[] chromosome;
+
     public Nurse(int[] chromosome) {
 
-        if(chromosome.length != CHROMOSOME_LENGTH){
+        if (chromosome.length != CHROMOSOME_LENGTH) {
             throw new IllegalArgumentException(String.valueOf(chromosome.length));
         }
         this.chromosome = chromosome;
     }
 
-    public Vacancy getVacancy(){
-        switch (chromosome[0]){
+    public Vacancy getVacancy() {
+        switch (chromosome[0]) {
             case 0:
                 return Vacancy.FULL;
             case 1:
@@ -34,18 +39,28 @@ public class Nurse {
         }
     }
 
-    public Week getWeek(int value){
-        switch (value){
+    public List<Shift> getAllShifts() {
+        List<Shift> shifts = new ArrayList<Shift>();
+        for (int i = 0; i < 6; i++) {
+            for (Weekday weekday : Weekday.values()) {
+                shifts.add(getWeek(i).getShiftForDay(weekday));
+            }
+        }
+        return shifts;
+    }
+
+    public Week getWeek(int value) {
+        switch (value) {
             case 1:
-                return convert(chromosome,0,8);
+                return convert(chromosome, 0, 8);
             case 2:
-                return convert(chromosome,9,16);
+                return convert(chromosome, 9, 16);
             case 3:
-                return convert(chromosome,17,24);
+                return convert(chromosome, 17, 24);
             case 4:
-                return convert(chromosome,25,32);
+                return convert(chromosome, 25, 32);
             case 5:
-                return convert(chromosome,33,40);
+                return convert(chromosome, 33, 40);
             default:
                 throw new IllegalArgumentException();
         }

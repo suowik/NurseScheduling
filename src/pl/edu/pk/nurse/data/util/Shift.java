@@ -33,4 +33,45 @@ public enum Shift {
     public int value() {
         return value;
     }
+
+    public static int restBetween(Shift from, Shift to) {
+        int hoursLeft = 0;
+        switch (from) {
+            case NIGHT:
+                hoursLeft = 17;
+                break;
+            case NO_SHIFT:
+                hoursLeft = 24;
+                break;
+            case DAY:
+                hoursLeft = 7;
+                break;
+            case EARLY:
+                hoursLeft = 8;
+                break;
+            case LATE:
+                hoursLeft = 1;
+                break;
+        }
+        int froMidnightToStart = 0;
+        switch (to) {
+            case NIGHT:
+                froMidnightToStart = 23;
+                break;
+            case NO_SHIFT:
+                froMidnightToStart = 24;
+                break;
+            case DAY:
+                froMidnightToStart = 8;
+                break;
+            case EARLY:
+                froMidnightToStart = 7;
+                break;
+            case LATE:
+                froMidnightToStart = 14;
+                break;
+        }
+        return hoursLeft + froMidnightToStart;
+
+    }
 }

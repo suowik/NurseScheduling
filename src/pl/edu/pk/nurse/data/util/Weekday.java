@@ -6,12 +6,22 @@ package pl.edu.pk.nurse.data.util;
  * Time: 11:35
  */
 public enum Weekday {
-    MONDAY(1), TUESDAY(2), WEDNESDAY(3),THURSDAY(4),FRIDAY(5),SATURDAY(6),SUNDAY(7);
+    MONDAY(1), TUESDAY(2), WEDNESDAY(3), THURSDAY(4), FRIDAY(5), SATURDAY(6), SUNDAY(7);
     int index;
-    Weekday(int index){
+
+    Weekday(int index) {
         this.index = index;
     }
-    public int index(){
+
+    public int index() {
         return index;
+    }
+
+    public static Weekday forIndex(int idx) {
+        for (Weekday weekday : values()) {
+            if (weekday.index == idx) return weekday;
+        }
+        throw new RuntimeException();
+
     }
 }
