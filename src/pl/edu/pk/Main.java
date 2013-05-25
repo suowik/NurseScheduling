@@ -13,14 +13,18 @@ public class Main {
     private static final int POPULATION_SIZE = 1500;
     private static final Crossover crossover = new Crossover();
     private static final Mutate mutate = new Mutate();
-    private static final int OPTIMAL_SOLUTION = 5000;
+    private static final int OPTIMAL_SOLUTION = 0;
+    private static int POPULATIONS = 0;
 
     public static void main(String[] args) {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
+        long start = System.currentTimeMillis();
         for(int i  = 0; i < POPULATION_SIZE; i++){
             initialPopulation.add(new Schedule(16,12,3,1));
         }
         Schedule schedule = execute(initialPopulation);
+        System.out.println("TIME: "+(System.currentTimeMillis()-start));
+        System.out.println("POPULATIONS:" +POPULATIONS);
         System.out.println(schedule);
     }
 
@@ -43,7 +47,8 @@ public class Main {
     private static boolean isSatisfying(List<Schedule> population) {
         int best = Collections.min(population).fitness().getValue();
         System.out.println("Current best result value: "+ best);
-        return best > OPTIMAL_SOLUTION;
+        POPULATIONS++;
+        return best <= OPTIMAL_SOLUTION;
     }
 
     private static void calculateFitnessAndSort(List<Schedule> population) {
