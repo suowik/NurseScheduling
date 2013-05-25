@@ -21,8 +21,8 @@ public class RestBeforeNightShiftConstraint extends HardConstraint {
 
         for (Nurse nurse : schedule.toEntity()) {
             List<Shift> allShifts = nurse.getAllShifts();
+            int reducedIndex = -1;
             for (int i = 1; i < allShifts.size(); i++) {
-                int reducedIndex = -1;
                 Shift today = allShifts.get(i - 1);
                 Shift tommorow = allShifts.get(i);
                 if (tommorow == Shift.NIGHT) {
