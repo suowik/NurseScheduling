@@ -22,16 +22,16 @@ public class Main {
         for(int i  = 0; i < POPULATION_SIZE; i++){
             initialPopulation.add(new Schedule(16,12,3,1));
         }
-        Schedule schedule = execute(initialPopulation);
+        Schedule schedule = findScheduleWithBestFit(initialPopulation);
         System.out.println("TIME: "+(System.currentTimeMillis()-start));
         System.out.println("POPULATIONS:" +POPULATIONS);
         System.out.println(schedule);
     }
 
-    private static Schedule execute(List<Schedule> population) {
+    private static Schedule findScheduleWithBestFit(List<Schedule> population) {
         calculateFitnessAndSort(population);
         if(isSatisfying(population)){
-            return Collections.max(population);
+            return Collections.min(population);
         }
         List<Schedule> result = new ArrayList<Schedule>();
         for(int i = 0; i < population.size()-1;i++){
@@ -41,12 +41,12 @@ public class Main {
             result.addAll(population);
         }
         result = result.subList(0,POPULATION_SIZE);
-        return execute(result);
+        return findScheduleWithBestFit(result);
     }
 
     private static boolean isSatisfying(List<Schedule> population) {
         int best = Collections.min(population).fitness().getValue();
-        System.out.println("Current best result value: "+ best);
+        System.out.println("Current best result: "+ best);
         POPULATIONS++;
         return best <= OPTIMAL_SOLUTION;
     }

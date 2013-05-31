@@ -48,20 +48,20 @@ public class Schedule implements Comparable<Schedule>{
         }
     }
 
-    public Week getWeekForNurse(int nurseIndex, int week) {
-        return getNurse(nurseIndex).getWeek(week);
-    }
-
-    public Nurse getNurse(int index) {
-        return nurses.get(index);
-    }
-
     private void convertToEntity() {
         if (chromosome.length % VACANCY != 0) {
             throw new IllegalStateException("wrong length of chromosome");
         }
         this.nurses = new ArrayList<Nurse>();
         convertChromosomeToNurses();
+    }
+
+    public Week getWeekForNurse(int nurseIndex, int week) {
+        return getNurse(nurseIndex).getWeek(week);
+    }
+
+    public Nurse getNurse(int index) {
+        return nurses.get(index);
     }
 
     private void convertChromosomeToNurses() {

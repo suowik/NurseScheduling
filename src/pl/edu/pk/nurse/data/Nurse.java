@@ -19,7 +19,6 @@ public class Nurse {
     private int[] chromosome;
 
     public Nurse(int[] chromosome) {
-
         if (chromosome.length != CHROMOSOME_LENGTH) {
             throw new IllegalArgumentException(String.valueOf(chromosome.length));
         }

@@ -35,9 +35,6 @@ public class ConsecutiveNightShiftsConstraint extends HardConstraint {
                 }
             }
         }
-
         return new Fitness(violated);
     }
-
-
 }
