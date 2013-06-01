@@ -22,10 +22,29 @@ public class Main {
         for(int i  = 0; i < POPULATION_SIZE; i++){
             initialPopulation.add(new Schedule(16,12,3,1));
         }
-        Schedule schedule = findScheduleWithBestFit(initialPopulation);
+
+        //Schedule schedule = findScheduleWithBestFit(initialPopulation);
+        Schedule schedule = findScheduleWithBestFitIter(initialPopulation); // Iteracyjnie
         System.out.println("TIME: "+(System.currentTimeMillis()-start));
         System.out.println("POPULATIONS:" +POPULATIONS);
         System.out.println(schedule);
+    }
+
+    public static Schedule findScheduleWithBestFitIter(List<Schedule> population) {
+        List<Schedule> tmpPopulation = population;
+        calculateFitnessAndSort(tmpPopulation);
+        while (!isSatisfying(tmpPopulation)) {
+            List<Schedule> result = new ArrayList<Schedule>();
+            for(int i = 0; i < tmpPopulation.size()-1;i++){
+                Schedule offspring = crossover.apply(tmpPopulation.get(i), tmpPopulation.get(i + 1));
+                offspring = mutate.apply(offspring);
+                result.add(offspring);
+                result.addAll(tmpPopulation);
+            }
+            tmpPopulation = result.subList(0,POPULATION_SIZE);
+            calculateFitnessAndSort(tmpPopulation);
+        }
+        return Collections.min(tmpPopulation);
     }
 
     private static Schedule findScheduleWithBestFit(List<Schedule> population) {
