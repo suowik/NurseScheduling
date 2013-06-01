@@ -47,7 +47,7 @@ public class FullCoverConstraint extends HardConstraint {
             result += weekDay(Weekday.FRIDAY);
             result += weekDay(Weekday.SATURDAY);
             result += weekend(Weekday.SUNDAY);
-            return result;
+            return result != 0 ? 1 : 0;
 
         }
 
