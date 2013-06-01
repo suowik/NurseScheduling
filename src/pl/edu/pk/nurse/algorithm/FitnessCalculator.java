@@ -2,9 +2,7 @@ package pl.edu.pk.nurse.algorithm;
 
 import pl.edu.pk.nurse.constraints.Constraint;
 import pl.edu.pk.nurse.constraints.hard.*;
-import pl.edu.pk.nurse.constraints.soft.NightShiftsSeries030Constraint;
-import pl.edu.pk.nurse.constraints.soft.NightShiftsSeries3048Constraint;
-import pl.edu.pk.nurse.constraints.soft.StandAloneShiftsConstraint;
+import pl.edu.pk.nurse.constraints.soft.*;
 import pl.edu.pk.nurse.data.Schedule;
 import pl.edu.pk.nurse.data.util.Fitness;
 
@@ -27,6 +25,9 @@ public class FitnessCalculator {
     public static final Constraint standAloneShifts = new StandAloneShiftsConstraint();
     public static final Constraint nightShiftsSeries3048 = new NightShiftsSeries3048Constraint();
     public static final Constraint nightShiftsSeries030 = new NightShiftsSeries030Constraint();
+    public static final Constraint earlyAfterDayShifts = new EarlyAfterDayShiftsConstraint();
+    public static final Constraint nightAfterEarlyShifts = new NightAfterEarlyShiftsConstraint();
+    public static final Constraint completeWeekend = new CompleteWeekendConstraint();
 
     public static Fitness measure(Schedule schedule) {
         return measure(schedule,
@@ -41,7 +42,11 @@ public class FitnessCalculator {
                 weekendsOfDuty,
                 standAloneShifts,
                 nightShiftsSeries3048,
-                nightShiftsSeries030);
+                nightShiftsSeries030,
+                earlyAfterDayShifts,
+                nightAfterEarlyShifts,
+                completeWeekend
+        );
     }
 
     private static Fitness measure(Schedule schedule, Constraint... constraints) {

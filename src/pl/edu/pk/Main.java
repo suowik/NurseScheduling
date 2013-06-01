@@ -20,7 +20,7 @@ public class Main {
         List<Schedule> initialPopulation = new ArrayList<Schedule>();
         long start = System.currentTimeMillis();
         for(int i  = 0; i < POPULATION_SIZE; i++){
-            initialPopulation.add(new Schedule(16,12,3,1));
+            initialPopulation.add(new Schedule(16,16,0,0));
         }
 
         //Schedule schedule = findScheduleWithBestFit(initialPopulation);
