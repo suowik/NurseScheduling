@@ -1,5 +1,6 @@
 package pl.edu.pk.nurse.constraints.hard;
 
+import pl.edu.pk.nurse.Configuration;
 import pl.edu.pk.nurse.data.Nurse;
 import pl.edu.pk.nurse.data.Schedule;
 import pl.edu.pk.nurse.data.util.Fitness;
@@ -41,6 +42,6 @@ public class ConsecutiveShiftsConstraint extends HardConstraint {
             }
         }
 
-        return new Fitness(violated);
+        return new Fitness(violated * Configuration.HARD_CONSTRAINT_WEIGHT);
     }
 }
